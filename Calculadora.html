@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora Simples — Mundo das Dicas</title>
+  <style>
+    /* ======================================
+       🎨 CORPO DA PÁGINA
+       ====================================== */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+    }
+
+    /* ======================================
+       🟦 BARRA DE NAVEGAÇÃO — IGUAL DA PÁGINA PRINCIPAL
+       ====================================== */
+    .barra-navegacao {
+      background-color: #2c5f2d;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    .nome-site {
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      margin-right: auto;
+    }
+    .botao-menu {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 8px 15px;
+      border-radius: 5px;
+    }
+    .botao-menu:hover {
+      background-color: #4CAF50;
+    }
+
+    /* ======================================
+       📏 ÁREA DA CALCULADORA
+       ====================================== */
+    .conteudo {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #2c5f2d;
+      font-size: 28px;
+    }
+    .caixa-calculadora {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    /* ======================================
+       ✏️ CAMPOS DE DIGITAR NÚMEROS
+       ====================================== */
+    input, select, button {
+      font-size: 18px;
+      padding: 10px;
+      margin: 8px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      width: 200px;
+    }
+    button {
+      background-color: #2c5f2d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      width: 220px;
+    }
+    button:hover {
+      background-color: #4CAF50;
+    }
+
+    /* ======================================
+       📊 O RESULTADO
+       ====================================== */
+    .resultado {
+      margin-top: 20px;
+      font-size: 22px;
+      color: #333;
+      font-weight: bold;
+      padding: 15px;
+      background-color: #f0f8f0;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🟦 BARRA DE NAVEGAÇÃO -->
+  <div class="barra-navegacao">
+    <span class="nome-site">🌍 Mundo das Dicas</span>
+    <a href="index.html" class="botao-menu">🏠 Início</a>
+    <a href="calculadora.html" class="botao-menu">📏 Calculadora</a>
+    <a href="filmes.html" class="botao-menu">🎬 Filmes</a>
+    <a href="minecraft.html" class="botao-menu">⛏️ Minecraft</a>
+    <a href="sobre.html" class="botao-menu">👤 Sobre</a>
+  </div>
+
+  <!-- 📏 A CALCULADORA -->
+  <div class="conteudo">
+    <h1>📏 Calculadora Simples</h1>
+    
+    <div class="caixa-calculadora">
+      <!-- 📝 Caixinha pra digitar o PRIMEIRO número -->
+      <input type="number" id="numero1" placeholder="Digite o 1º número">
+      
+      <!-- 📤 Escolher a operação: + - × ÷ -->
+      <select id="operacao">
+        <option value="somar">➕ Somar (+)</option>
+        <option value="subtrair">➖ Subtrair (−)</option>
+        <option value="multiplicar">✖️ Multiplicar (×)</option>
+        <option value="dividir">➗ Dividir (÷)</option>
+      </select>
+      
+      <!-- 📝 Caixinha pra digitar o SEGUNDO número -->
+      <input type="number" id="numero2" placeholder="Digite o 2º número">
+      
+      <!-- 🟢 Botão pra calcular -->
+      <button onclick="calcular()">✅ Calcular</button>
+      
+      <!-- 📊 O resultado aparece AQUI -->
+      <div class="resultado" id="resultado">Digite os números e clique em Calcular</div>
+    </div>
+  </div>
+
+  <!-- ⚡ A PARTE QUE FAZ TUDO FUNCIONAR — JavaScript -->
+  <script>
+    function calcular() {
+      // 📍 Passo 1: Pegar os números que a pessoa digitou
+      let n1 = Number(document.getElementById("numero1").value);
+      let n2 = Number(document.getElementById("numero2").value);
+      let op = document.getElementById("operacao").value;
+      let resultado = 0;
+      let simbolo = "";
+
+      // 🧮 Passo 2: Escolher a conta certa
+      if (op === "somar") {
+        resultado = n1 + n2;
+        simbolo = "+";
+      }
+      else if (op === "subtrair") {
+        resultado = n1 - n2;
+        simbolo = "−";
+      }
+      else if (op === "multiplicar") {
+        resultado = n1 * n2;
+        simbolo = "×";
+      }
+      else if (op === "dividir") {
+        if (n2 === 0) {
+          document.getElementById("resultado").innerHTML = "⚠️ Não dá pra dividir por zero!";
+          return; // Para aqui, não faz o resto
+        }
+        resultado = n1 / n2;
+        simbolo = "÷";
+      }
+
+      // 📤 Passo 3: Mostrar o resultado na tela
+      document.getElementById("resultado").innerHTML = 
+        n1 + " " + simbolo + " " + n2 + " = <strong>" + resultado + "</strong>";
+    }
+  </script>
+
+</body>
+</html>
